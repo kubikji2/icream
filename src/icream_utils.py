@@ -7,6 +7,11 @@ from pytz import UTC # timezone
 def unique(non_unique_list : list):
     return list(set(non_unique_list))
 
+# function to replace multiple spaces and replace spaces on the beginning and the end
+# '-> inspired by: https://stackoverflow.com/questions/2077897/substitute-multiple-whitespace-with-single-whitespace-in-python
+def replace_mult_spaces(s : str):
+    return " ".join(s.split())
+
 # parse string into categories in format:
 # <some text> "[" <some tag1> "-" <some tag2> "-" ... "]" <some text>
 def icream_parse_tags(s : str, _left_separator = "[", _right_separator = "]", _middle_separator = "-"):
