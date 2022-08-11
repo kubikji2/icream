@@ -36,6 +36,10 @@ def icream_date_converter(unconv_time):
                 datetime.combine(unconv_time, time(tzinfo=UTC))
     return conv_time
 
+def icream_date_formater(date_time : datetime):
+    date_format = "%Y-%02m-%02d %02H.%02M"
+    return date.strftime(date_time,date_format)
+
 if __name__=="__main__":
 
     ws = ["[a-borka a borec-c]", " a dafda fda [ s st - - gfa    fda  fda fad    f. ] dafa fda"]
