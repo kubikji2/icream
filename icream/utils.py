@@ -1,5 +1,8 @@
-from datetime import datetime, date, time
-from pytz import UTC # timezone
+
+# date and time
+import datetime
+# timezones
+import pytz
 
 # function to get unique values
 # '-> based on: https://stackoverflow.com/questions/12897374/get-unique-values-from-a-list-in-python
@@ -32,20 +35,20 @@ def iceam_parse_email(s):
 # NOTE: this is some kind of magic, but it works
 def icream_date_converter(unconv_time):
     conv_time = unconv_time \
-                if type(unconv_time) == type(datetime(year=2002,month=7,day=26)) else \
-                datetime.combine(unconv_time, time(tzinfo=UTC))
+                if type(unconv_time) == type(datetime.datetime(year=2002,month=7,day=26)) else \
+                datetime.datetime.combine(unconv_time, datetime.time(tzinfo=pytz.UTC))
     return conv_time
 
 # format date time into usual formats
-def icream_date_formater(date_time : datetime):
+def icream_date_formater(date_time : datetime.datetime):
     date_format = "%02d. %02m. %Y %02H.%02M"
-    return date.strftime(date_time, date_format)
+    return datetime.date.strftime(date_time, date_format)
 
 # format duration
 # '-> for single day events in: dd. mm. yyyy hh.mm-hh.mm
 # '-> for multiday events in: dd. mm. yyyy hh.mm-dd. mm. yyyy hh.mm
 # TODO improve for longer events in format similarly to dd. mm. - dd. mm. yyyy
-def icream_duration_formater(start_time : datetime, end_time : datetime):    
+def icream_duration_formater(start_time : datetime.datetime, end_time : datetime.datetime):    
     
     end_t_fs =  "%02d. %02m. %Y %02H.%02M" \
                 if (start_time.day != end_time.day) \
@@ -53,7 +56,7 @@ def icream_duration_formater(start_time : datetime, end_time : datetime):
                 or (start_time.year != end_time.year) else \
                 "%02H.%02M" 
 
-    return icream_date_formater(start_time) + "-" + date.strftime(end_time, end_t_fs)
+    return icream_date_formater(start_time) + "-" + datetime.date.strftime(end_time, end_t_fs)
 
 if __name__=="__main__":
 

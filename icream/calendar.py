@@ -1,9 +1,9 @@
-from icream_event import ICREAMEvent
+import event
  
 from copy import deepcopy
 
 # icalendar interface
-from icalendar import Calendar, Event
+import icalendar
 
 class ICREAMCalendar:
 
@@ -18,13 +18,13 @@ class ICREAMCalendar:
     def load_calendar(self, path):
         with open(path, "r") as f:
             # read calendar from file
-            ical = Calendar.from_ical(f.read())
+            ical = icalendar.Calendar.from_ical(f.read())
             f.close()
         
             for component in ical.walk():
                 #print(component.name)
                 if component.name == "VEVENT":
-                    icrm_ev = ICREAMEvent(component=component)
+                    icrm_ev = event.ICREAMEvent(component=component)
                     self.events.append(icrm_ev)
             
             self.sort_calendar_by_date()
@@ -39,7 +39,7 @@ class ICREAMCalendar:
         self.events.sort(key=lambda x : x.start, reverse=reverse)
 
 if __name__=="__main__":
-    _path = "./cals/kubikji2@fel.cvut.cz.ics"
+    _path = "../cals/kubikji2@fel.cvut.cz.ics"
     icrm_cal = ICREAMCalendar(path=_path)
-    icrm_cal.sort_calendar()
+    icrm_cal.sort_calendar_by_date()
     icrm_cal.print_calendar()

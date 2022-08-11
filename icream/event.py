@@ -1,6 +1,7 @@
-from icalendar import Event
-
-from icream_utils import *
+# import my utils 
+import utils
+# import ica endar 
+import icalendar
 
 # basic event object used by ICREAMCalendar
 class ICREAMEvent:
@@ -17,13 +18,13 @@ class ICREAMEvent:
             self.parse_component(component=component)
     
     # update ICREAMEvent using icalendar.Event
-    def parse_component(self, component : Event):
+    def parse_component(self, component : icalendar.Event):
         if component.name == "VEVENT":
-            self.name = replace_mult_spaces(component.get('summary'))
+            self.name = utils.replace_mult_spaces(component.get('summary'))
             # decoding based on: https://icalendar.readthedocs.io/en/latest/usage.html#more-documentation
-            self.start = icream_date_converter(component.decoded('dtstart'))
-            self.end = icream_date_converter(component.decoded('dtend'))
-            self.organizer = iceam_parse_email(component.get('organizer'))
+            self.start = utils.icream_date_converter(component.decoded('dtstart'))
+            self.end = utils.icream_date_converter(component.decoded('dtend'))
+            self.organizer = utils.iceam_parse_email(component.get('organizer'))
             self.description = component.get('description')
             print(self.name)
         else:
@@ -35,7 +36,7 @@ class ICREAMEvent:
 
     # string representatoni
     def __str__(self):
-        dur_s = icream_duration_formater(self.start, self.end)
+        dur_s = utils.icream_duration_formater(self.start, self.end)
         s = "{} ({}) by {}".format(self.name, dur_s, self.organizer)
         return s
 
