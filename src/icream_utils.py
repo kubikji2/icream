@@ -36,9 +36,24 @@ def icream_date_converter(unconv_time):
                 datetime.combine(unconv_time, time(tzinfo=UTC))
     return conv_time
 
+# format date time into usual formats
 def icream_date_formater(date_time : datetime):
-    date_format = "%Y-%02m-%02d %02H.%02M"
-    return date.strftime(date_time,date_format)
+    date_format = "%02d. %02m. %Y %02H.%02M"
+    return date.strftime(date_time, date_format)
+
+# format duration
+# '-> for single day events in: dd. mm. yyyy hh.mm-hh.mm
+# '-> for multiday events in: dd. mm. yyyy hh.mm-dd. mm. yyyy hh.mm
+# TODO improve for longer events in format similarly to dd. mm. - dd. mm. yyyy
+def icream_duration_formater(start_time : datetime, end_time : datetime):    
+    
+    end_t_fs =  "%02d. %02m. %Y %02H.%02M" \
+                if (start_time.day != end_time.day) \
+                or (start_time.month != end_time.month) \
+                or (start_time.year != end_time.year) else \
+                "%02H.%02M" 
+
+    return icream_date_formater(start_time) + "-" + date.strftime(end_time, end_t_fs)
 
 if __name__=="__main__":
 
