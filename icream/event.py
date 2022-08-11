@@ -27,7 +27,6 @@ class ICREAMEvent:
             self.end = iu.icream_date_converter(component.decoded('dtend'))
             self.organizer = iu.iceam_parse_email(component.get('organizer'))
             self.description = component.get('description')
-            print(self.name)
         else:
             print("[ICREAM-event] invalid component {}=!=\'VEVENT\'".format(component.name))
 
