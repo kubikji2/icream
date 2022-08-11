@@ -1,9 +1,10 @@
-import event
- 
-from copy import deepcopy
-
 # icalendar interface
 import icalendar
+# import deepcopy
+import copy
+
+# importing icream events
+import icream.event as ie
 
 class ICREAMCalendar:
 
@@ -12,7 +13,7 @@ class ICREAMCalendar:
         if path is not None:
             self.load_calendar(path)
         if calendar is not None:
-            self.events = deepcopy(calendar.events)
+            self.events = copy.deepcopy(calendar.events)
 
     # load calendar from file
     def load_calendar(self, path):
@@ -24,7 +25,7 @@ class ICREAMCalendar:
             for component in ical.walk():
                 #print(component.name)
                 if component.name == "VEVENT":
-                    icrm_ev = event.ICREAMEvent(component=component)
+                    icrm_ev = ie.ICREAMEvent(component=component)
                     self.events.append(icrm_ev)
             
             self.sort_calendar_by_date()
