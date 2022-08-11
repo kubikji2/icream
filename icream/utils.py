@@ -57,10 +57,3 @@ def icream_duration_formater(start_time : datetime.datetime, end_time : datetime
                 "%02H.%02M" 
 
     return icream_date_formater(start_time) + "-" + datetime.date.strftime(end_time, end_t_fs)
-
-if __name__=="__main__":
-
-    ws = ["[a-borka a borec-c]", " a dafda fda [ s st - - gfa    fda  fda fad    f. ] dafa fda"]
-
-    for w in ws:
-        print("{} -> {}".format(w,icream_parse_tags(w)))

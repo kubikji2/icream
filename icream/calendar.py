@@ -38,9 +38,3 @@ class ICREAMCalendar:
     # sort calendar by date
     def sort_calendar_by_date(self, reverse=False):
         self.events.sort(key=lambda x : x.start, reverse=reverse)
-
-if __name__=="__main__":
-    _path = "../cals/kubikji2@fel.cvut.cz.ics"
-    icrm_cal = ICREAMCalendar(path=_path)
-    icrm_cal.sort_calendar_by_date()
-    icrm_cal.print_calendar()
