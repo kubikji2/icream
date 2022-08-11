@@ -26,13 +26,20 @@ class ICREAMCalendar:
                 if component.name == "VEVENT":
                     icrm_ev = ICREAMEvent(component=component)
                     self.events.append(icrm_ev)
+            
+            self.sort_calendar_by_date()
     
     # prints callendar
     def print_calendar(self):
         for ev in self.events:
             print(ev)
+    
+    # sort calendar by date
+    def sort_calendar_by_date(self, reverse=False):
+        self.events.sort(key=lambda x : x.start, reverse=reverse)
 
 if __name__=="__main__":
     _path = "./cals/kubikji2@fel.cvut.cz.ics"
     icrm_cal = ICREAMCalendar(path=_path)
+    icrm_cal.sort_calendar()
     icrm_cal.print_calendar()
