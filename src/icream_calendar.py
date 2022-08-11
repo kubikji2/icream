@@ -1,4 +1,4 @@
-from icreamevent import ICREAMEvent
+from icream_event import ICREAMEvent
  
 from copy import deepcopy
 
