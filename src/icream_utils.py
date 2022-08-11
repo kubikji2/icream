@@ -1,3 +1,5 @@
+from datetime import datetime, date, time, timedelta, tzinfo
+from pytz import UTC # timezone
 
 # function to get unique values
 # '-> based on: https://stackoverflow.com/questions/12897374/get-unique-values-from-a-list-in-python
@@ -20,6 +22,14 @@ def iceam_parse_email(s):
     if type(s) == type(""):
         ret = s.replace("mailto:","")
     return ret
+
+# convert time to into valid format
+# NOTE: this is some kind of magic, but it works
+def icream_date_converter(unconv_time):
+    conv_time = unconv_time \
+                if type(unconv_time) == type(datetime(year=2002,month=7,day=26)) else \
+                datetime.combine(unconv_time, time(tzinfo=UTC))
+    return conv_time
 
 if __name__=="__main__":
 
