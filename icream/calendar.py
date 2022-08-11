@@ -4,7 +4,7 @@ import icalendar
 import copy
 
 # importing icream events
-import icream.event as ie
+from . import event as ie
 
 class ICREAMCalendar:
 

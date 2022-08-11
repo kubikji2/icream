@@ -2,7 +2,7 @@
 import icalendar
 
 # import my utils 
-import icream.utils as iu
+from . import utils as iu
 
 # basic event object used by ICREAMCalendar
 class ICREAMEvent:
