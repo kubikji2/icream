@@ -37,4 +37,5 @@ class ICREAMCalendar:
     
     # sort calendar by date
     def sort_calendar_by_date(self, reverse=False):
+        # loosly based on: https://www.programiz.com/python-programming/methods/list/sort
         self.events.sort(key=lambda x : x.start, reverse=reverse)

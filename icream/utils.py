@@ -48,6 +48,7 @@ def icream_date_formater(date_time : datetime.datetime):
 # '-> for single day events in: dd. mm. yyyy hh.mm-hh.mm
 # '-> for multiday events in: dd. mm. yyyy hh.mm-dd. mm. yyyy hh.mm
 # TODO improve for longer events in format similarly to dd. mm. - dd. mm. yyyy
+# '-> based on: https://www.geeksforgeeks.org/python-datetime-strptime-function/
 def icream_duration_formater(start_time : datetime.datetime, end_time : datetime.datetime):    
     
     end_t_fs =  "%02d. %02m. %Y %02H.%02M" \

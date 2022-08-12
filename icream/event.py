@@ -34,7 +34,8 @@ class ICREAMEvent:
     def get_duration(self):
         return 0 if (self.start is None) or (self.end is None) else self.end - self.start
 
-    # string representatoni
+    # string representaton
+    # '-> based on: https://stackoverflow.com/questions/4932438/how-to-create-a-custom-string-representation-for-a-class-object
     def __str__(self):
         dur_s = iu.icream_duration_formater(self.start, self.end)
         s = "{} ({}) by {}".format(self.name, dur_s, self.organizer)
