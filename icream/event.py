@@ -15,6 +15,7 @@ class ICREAMEvent:
         self.name = name
         self.organizer = organizer
         self.description = description
+        self.component = component
         if component is not None:
             self.parse_component(component=component)
     
